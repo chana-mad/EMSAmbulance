@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "/LJiN51Mxddbcz8ZYd0n8PZXZr2TCF8yk3uziWrR64A=",
+  "Source": "EMSAmbulanceApp.Api.AmbulanceService",
+  "BasePath": "_content/EMSAmbulanceApp.Api.AmbulanceService",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
