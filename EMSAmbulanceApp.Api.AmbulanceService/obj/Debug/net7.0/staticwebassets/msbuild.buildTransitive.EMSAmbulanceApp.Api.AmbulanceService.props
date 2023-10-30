@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="../buildMultiTargeting/EMSAmbulanceApp.Api.AmbulanceService.props" />
-</Project>
