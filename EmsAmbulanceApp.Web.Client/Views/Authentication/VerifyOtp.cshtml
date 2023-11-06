@@ -1,0 +1,35 @@
+﻿@model VerifyOtpViewModel
+
+<div class="ambulance-card">
+    <img src="~/images/ambulance-image.jpg" alt="Ambulance Image" class="ambulance-image">
+    <div class="center-screen">
+        <h2><span>QUICK AMBULANCE</span></h2>
+    </div>
+    <form method="post" asp-action="VerifyOtp" asp-controller="Authentication">
+        <br />
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="mobile-container">
+            <span class="phone-icon">📞</span>
+            <input type="text" name="PhoneNumber" placeholder="Mobile Number" value="@Model.PhoneNumber" class="mobile-input">
+        </div>
+        <div class="otp-container">
+            <input type="text" name="Otp1" id="Otp1" placeholder="•" class="otp-input" inputmode="numeric" maxlength="1" oninput="moveToNextField(this, 'Otp2')">
+            <input type="text" name="Otp2" id="Otp2" placeholder="•" class="otp-input" inputmode="numeric" maxlength="1" oninput="moveToNextField(this, 'Otp3')">
+            <input type="text" name="Otp3" id="Otp3" placeholder="•" class="otp-input" inputmode="numeric" maxlength="1" oninput="moveToNextField(this, 'Otp4')">
+            <input type="text" name="Otp4" id="Otp4" placeholder="•" class="otp-input" inputmode="numeric" maxlength="1" oninput="moveToNextField(this, 'Otp5')">
+            <input type="text" name="Otp5" id="Otp5" placeholder="•" class="otp-input" inputmode="numeric" maxlength="1" oninput="moveToNextField(this, 'Otp6')">
+            <input type="text" name="Otp6" id="Otp6" placeholder="•" class="otp-input" inputmode="numeric" maxlength="1">
+        </div>
+        <div class="otp-timer">1:06</div>
+        <button class="btn resend-otp">Resend Otp</button>
+        <div class="app-btn-group">
+            <button class="btn login-btn" type="submit">Verify</button>
+        </div>
+    </form>
+</div>
+
+
+@section Scripts
+{
+    <script src="~/js/move_next_otp_field.js"></script>
+}

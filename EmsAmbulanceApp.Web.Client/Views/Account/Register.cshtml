@@ -1,0 +1,20 @@
+﻿@model RegisterViewModel
+
+<div class="ambulance-card">
+    <img src="~/images/ambulance-image.jpg" alt="Ambulance Image" class="ambulance-image">
+    <div class="center-screen">
+        <h2><span>QUICK AMBULANCE</span></h2>
+    </div>
+    <br />        
+    <form asp-action="Register" asp-controller="Account" method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="mobile-container">
+            <span class="phone-icon">📞</span>
+            <input name="PhoneNumber" type="text" placeholder="Mobile Number" maxlength="10" class="mobile-input">
+        </div>
+        <br />
+        <div class="app-btn-group">
+            <button class="btn login-btn" type="submit">📞 Verify Phone Number</button>
+        </div>
+    </form>
+</div>

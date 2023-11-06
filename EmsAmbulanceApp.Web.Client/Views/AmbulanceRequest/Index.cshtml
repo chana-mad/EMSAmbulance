@@ -1,0 +1,125 @@
+<div class="ambulance-card">
+    <div class="header">
+        <button class="menu-btn">☰</button>
+        <div class="search-bar">
+            <input id="end" placeholder="Enter Incident Location" class="location-input">
+            <span class="search-btn">🔍</span>
+        </div>
+    </div>
+    <div class="map" id="map"></div>
+    <div class="centered-pin">
+        📍 <!-- You can replace this with an image or any pin icon -->
+    </div>
+    <br/>
+    <div class="app-btn-group">
+        <a class="btn book-ambulance" asp-area="" asp-controller="Home" asp-action="Booking">BOOK AMBULANCE</a>
+    </div>
+</div>
+
+
+@section Scripts
+{
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAuEhOLt7dHcJFaCinq9Rj3I5BTM2LwlU&region=NL&callback=initMap&v=weekly" defer></script>
+    <script>
+       
+
+    function initMap() {
+            const directionsService = new google.maps.DirectionsService();
+            const directionsRenderer = new google.maps.DirectionsRenderer();
+      const map = new google.maps.Map(document.getElementById("map"), {
+                  zoom: 12,
+                  center: { lat: 51.9244, lng: 4.4777 },
+                  disableDefaultUI: true,
+                });
+      
+      getCurrentLocation(map);
+    
+      directionsRenderer.setMap(map);
+
+      
+      // Add listener for the dragend event
+        addListenerToMap(map);
+
+            document.getElementById("end").addEventListener("change", () => calculateAndDisplayRoute(directionsService, directionsRenderer));
+    }
+
+        function addListenerToMap(mapInstance) {
+            mapInstance.addListener('dragend', function () {
+                handleDragEnd(mapInstance);
+            });
+        }
+
+        function handleDragEnd(mapInstance) {
+            const directionsService = new google.maps.DirectionsService();
+            const directionsRenderer = new google.maps.DirectionsRenderer();
+            var center = mapInstance.getCenter();
+
+            var latlng = { lat: center.lat(), lng: center.lng() };
+
+            // Initialize the Geocoder
+            var geocoder = new google.maps.Geocoder();
+            
+            geocoder.geocode({ 'location': latlng }, function (results, status) {
+                if (status === 'OK') {
+                    if (results[0]) {                        
+                        document.getElementById('end').value = results[0].formatted_address;
+                        document.getElementById('end').dispatchEvent(new Event('change', {
+                            bubbles: true,
+                            cancelable: true
+                        }));
+                        mapInstance.setCenter(latlng);
+                    } else {
+                        window.alert('No results found');
+                    }
+                } else {
+                    window.alert('Geocoder failed due to: ' + status);
+                }
+            });
+        }
+    
+    function calculateAndDisplayRoute(directionsService, directionsRenderer) {
+        console.log(directionsService)
+      directionsService
+        .route({
+          origin: { lat: 51.9244, lng: 4.4777 },
+          destination: {
+            query: document.getElementById("end").value,
+          },
+          travelMode: google.maps.TravelMode.DRIVING,
+        })
+        .then((response) => {
+          directionsRenderer.setDirections(response);
+        })
+        .catch((e) => window.alert("Directions request failed due to " + status));
+    }
+    
+    function getCurrentLocation(map) {
+      let infoWindow = new google.maps.InfoWindow();
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition (
+                
+              (position) => {
+                const pos = {
+                  lat: position.coords.latitude,
+                  lng: position.coords.longitude,
+                };
+      
+                infoWindow.setPosition(pos);
+                infoWindow.setContent("Your Location");
+                infoWindow.open(map);
+                map.setCenter(pos);
+              },
+              () => {
+                handleLocationError(true, infoWindow, map.getCenter());
+              },
+            );
+          } else {
+            // Browser doesn't support Geolocation
+            handleLocationError(false, infoWindow, map.getCenter());
+          }
+    }
+    
+    window.initMap = initMap;
+    </script>
+}

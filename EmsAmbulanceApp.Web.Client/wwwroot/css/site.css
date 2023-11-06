@@ -1,0 +1,286 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+.ambulance-card {
+    font-family: 'Arial', sans-serif;
+    width: 100%; /* Make it responsive to screen width */
+    max-width: 90vh; /* Limit the maximum width */
+    margin: 0 auto; /* Center the card */
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.ambulance-image {
+    width: 100%;
+    max-height: 75vh;
+    object-fit: cover;
+}
+
+.app-title-text {
+    color: #428871;
+    margin-top: auto;
+}
+
+.app-btn-group {
+    margin-top: auto;
+}
+
+.center-screen {
+    position: static;
+}
+
+h1, h2 {
+    font-family: 'Electrolize', sans-serif;
+    margin: 10px 0;
+    font-weight: bolder;
+}
+
+    h2 span {
+        background: #fff;
+        padding: 0 10px;
+    }
+
+h2 {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #000;
+    margin-top: auto;
+    font-size: 24px; /* Decrease font size a bit for mobile */
+    line-height: 0.1em;
+}
+
+h1 {
+    text-align: left;
+    font-size: 26px; /* Decrease font size a bit for mobile */
+}
+
+.login-btn, .emergency-btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px; /* Decrease font size a bit for mobile */
+    cursor: pointer;
+    margin: 5px 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.login-btn {
+    background-color: #FFFFFF;
+    border: 1px solid #FF0000;
+    color: #FF0000;
+}
+
+.emergency-btn {
+    background-color: #428871;
+    color: #FFFFFF;
+}
+
+.login-btn:hover {
+    background-color: #FFDDDD;
+}
+
+.emergency-btn:hover {
+    background-color: #93d9cf;
+}
+
+.centered-text {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.mobile-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    border: 2px solid #428871;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.phone-icon {
+    margin-right: 10px;
+}
+
+.mobile-input {
+    flex-grow: 2;
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+.otp-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.otp-input {
+    width: 20%;
+    text-align: center;
+    border: none;
+    border-bottom: 2px solid rgb(128, 128, 128);
+    outline: none;
+}
+
+.otp-timer {
+    margin-top: 10px;
+    color: rgb(128, 128, 128);
+}
+
+.resend-otp {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    background-color: #428871;
+    color: white;
+    cursor: pointer;
+}
+
+/**/
+
+.header {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: white;
+}
+
+.menu-btn {
+    background-color: transparent;
+    
+    border: none;
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.search-bar {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    border: 1px solid rgb(128, 128, 128);
+    border-radius: 20px;
+    padding: 5px 10px;
+}
+
+.location-input {
+    flex-grow: 2;
+    border: none;
+    outline: none;
+}
+
+.search-btn {
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+.footer {
+    background-color: white;
+    padding: 20px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+
+.location {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.book-ambulance {
+    width: 100%;
+    padding: 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.centered-pin {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the pin */
+    z-index: 20; /* Adjust if needed to ensure the pin is above other map UI elements */
+    font-size: 2rem; /* Adjust as needed */
+}
+
+/**/
+/* Adjustments for Tablets */
+@media (min-width: 768px) {
+    .app-title-text {
+        margin-top: 0;
+    }
+
+    h2 {
+        margin-top: 0;
+        font-size: 24px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .app-btn-group {
+        margin-top: 0;
+    }
+
+    .login-btn, .emergency-btn {
+        font-size: 18px;
+    }
+}
+
+/* Adjustments for Desktop */
+@media (min-width: 992px) {
+    h2 {
+        margin-top: 0;
+        font-size: 28px;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+
+    .app-btn-group {
+        margin-top: 0;
+    }
+
+    .login-btn, .emergency-btn {
+        font-size: 20px;
+    }
+}

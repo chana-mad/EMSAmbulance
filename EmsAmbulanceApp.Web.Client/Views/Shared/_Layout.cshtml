@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AmbulanceTracker</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <style type="text/css">
+        /*
+             * Always set the map height explicitly to define the size of the div element
+             * that contains the map.
+             */
+        #map {
+            height: 100%;
+        }
+
+        /*
+             * Optional: Makes the sample page fill the window.
+             */
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css?family=Electrolize:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @* <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAuEhOLt7dHcJFaCinq9Rj3I5BTM2LwlU&libraries=places"></script> *@
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
