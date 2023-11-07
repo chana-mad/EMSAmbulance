@@ -25,7 +25,7 @@ namespace EmsAmbulanceApp.Web.Client.Application.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("EmsAmbulanceApp.Web.Client.Domain.Entities.AmbulanceRequest", b =>
+            modelBuilder.Entity("EmsAmbulanceApp.Web.Client.Domain.Entities.AmbulanceRequestController", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -334,7 +334,7 @@ namespace EmsAmbulanceApp.Web.Client.Application.Data.Migrations
                     b.HasDiscriminator().HasValue("Client");
                 });
 
-            modelBuilder.Entity("EmsAmbulanceApp.Web.Client.Domain.Entities.AmbulanceRequest", b =>
+            modelBuilder.Entity("EmsAmbulanceApp.Web.Client.Domain.Entities.AmbulanceRequestController", b =>
                 {
                     b.HasOne("EmsAmbulanceApp.Web.Client.Domain.Entities.Client", null)
                         .WithMany()

@@ -5,7 +5,11 @@ VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3C9D13F2-3853-4204-BF07-D8E72FD5BC17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmsAmbulanceApp.Web.Client", "EmsAmbulanceApp.Web.Client\EmsAmbulanceApp.Web.Client.csproj", "{E9F27CB5-69F1-43BD-821F-A5E02938A38B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmsAmbulanceApp.Web.Client", "EmsAmbulanceApp.Web.Client\EmsAmbulanceApp.Web.Client.csproj", "{E9F27CB5-69F1-43BD-821F-A5E02938A38B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{00DE150E-476F-4182-BC32-63DEC525AB0A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmbulanceLocationEmulator", "AmbulanceLocationEmulator\AmbulanceLocationEmulator.csproj", "{A19A3B13-EC3A-40F3-BB0A-095A501189C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,12 +21,17 @@ Global
 		{E9F27CB5-69F1-43BD-821F-A5E02938A38B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9F27CB5-69F1-43BD-821F-A5E02938A38B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9F27CB5-69F1-43BD-821F-A5E02938A38B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A19A3B13-EC3A-40F3-BB0A-095A501189C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A19A3B13-EC3A-40F3-BB0A-095A501189C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A19A3B13-EC3A-40F3-BB0A-095A501189C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A19A3B13-EC3A-40F3-BB0A-095A501189C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E9F27CB5-69F1-43BD-821F-A5E02938A38B} = {3C9D13F2-3853-4204-BF07-D8E72FD5BC17}
+		{A19A3B13-EC3A-40F3-BB0A-095A501189C4} = {00DE150E-476F-4182-BC32-63DEC525AB0A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E8806FB7-7987-45F0-A773-A9A2EDC560B7}

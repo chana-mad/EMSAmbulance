@@ -11,7 +11,7 @@ public class PreventLoggedInAccessAttribute : ActionFilterAttribute
         if (context.HttpContext.User.Identity.IsAuthenticated)
         {
             // Redirect to a different page if the user is already logged in
-            context.Result = new RedirectToActionResult("Index", "AmbulanceRequest", null);
+            context.Result = new RedirectToActionResult("Index", "AmbulanceRequestController", null);
         }
 
         base.OnActionExecuting(context);

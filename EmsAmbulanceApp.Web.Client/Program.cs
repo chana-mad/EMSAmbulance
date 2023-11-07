@@ -1,4 +1,5 @@
 using EmsAmbulanceApp.Web.Client.Application.Data;
+using EmsAmbulanceApp.Web.Client.Application.Hubs;
 using EmsAmbulanceApp.Web.Client.Application.Infrastructure.Repositories;
 using EmsAmbulanceApp.Web.Client.Application.Infrastructure.Services;
 using EmsAmbulanceApp.Web.Client.Domain.Entities;
@@ -30,6 +31,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 builder.Services.ConfigureApplicationCookie(opions => opions.LoginPath = "/Account/Index");
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddSignalR();
 
 var app = builder.Build();
 
@@ -52,5 +54,7 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapHub<AmbulanceLocationHub>("/locationHub");
 
 app.Run();

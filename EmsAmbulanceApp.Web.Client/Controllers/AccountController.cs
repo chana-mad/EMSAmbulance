@@ -116,7 +116,7 @@ namespace EmsAmbulanceApp.Web.Client.Controllers
 
                         // Sign in the user
                         await _signInManager.SignInAsync(user, isPersistent: false);
-                        return RedirectToAction("Index", "AmbulanceRequest");
+                        return RedirectToAction("Index", "AmbulanceRequestController");
                     }
                     ModelState.AddModelError(string.Empty, "Unable to find a user for the provided ID.");
                 }

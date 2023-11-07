@@ -79,7 +79,7 @@ public class AuthenticationController : Controller
             {
                 await _signInManager.SignInAsync(user, isPersistent: true);
                 // await _ecmUnitOfWork.OtpEntry.RemoveAsync(otp);
-                return RedirectToAction("Index", "AmbulanceRequest");
+                return RedirectToAction("Index", "AmbulanceRequestController");
             }
             
             ModelState.AddModelError("", "The OTP is invalid or has expired.");
