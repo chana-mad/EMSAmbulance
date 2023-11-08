@@ -8,6 +8,7 @@ public class EmsAmbulanceAppUnitOfWork : IEmsAmbulanceAppUnitOfWork
     private readonly EmsAmbulanceAppDbContext _dbContext;
     public IOtpEntryRepository OtpEntry { get; }
     public IClientRepository Client { get; }
+    public IAmbulanceRequestRepository AmbulanceRequest { get; }
 
     public EmsAmbulanceAppUnitOfWork(EmsAmbulanceAppDbContext dbContext)
     {
@@ -15,6 +16,7 @@ public class EmsAmbulanceAppUnitOfWork : IEmsAmbulanceAppUnitOfWork
 
         OtpEntry = new OtpEntryRepository(_dbContext);
         Client = new ClientRepository(_dbContext);
+        AmbulanceRequest = new AmbulanceRequestRepository(_dbContext);
     }
 
     public async Task<int> Complete()

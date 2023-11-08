@@ -5,5 +5,6 @@ public enum AmbulanceRequestStatus
     Pending,
     Approved,
     Denied,
-    Cancelled
+    Cancelled,
+    Completed
 }

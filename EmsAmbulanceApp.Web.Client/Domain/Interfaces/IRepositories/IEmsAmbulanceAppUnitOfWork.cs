@@ -3,6 +3,7 @@
 public interface IEmsAmbulanceAppUnitOfWork : IDisposable
 {
     Task<int> Complete();
-    IOtpEntryRepository OtpEntry {  get; }
-    IClientRepository Client {  get; }
+    IOtpEntryRepository OtpEntry { get; }
+    IClientRepository Client { get; }
+    IAmbulanceRequestRepository AmbulanceRequest { get; }
 }

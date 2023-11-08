@@ -25,7 +25,6 @@ async function start() {
 };
 
 function subscribeToLocation(requestId) {
-    console.log('invoked subscribe to location')
     connection.invoke("SubscribeToLocation", requestId)
         .catch(function (err) {
         return console.error(err.toString());

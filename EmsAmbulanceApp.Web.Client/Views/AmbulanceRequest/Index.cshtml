@@ -1,3 +1,10 @@
+@using EmsAmbulanceApp.Web.Client.Domain.Entities;
+@using Microsoft.AspNetCore.Identity
+
+@model AmbulanceRequestViewModel;
+ 
+@inject UserManager<Client> UserManager;
+
 <div class="ambulance-card">
     <div class="header">
         <button class="menu-btn">☰</button>
@@ -11,14 +18,36 @@
         📍 <!-- You can replace this with an image or any pin icon -->
     </div>
     <br/>
-    <div class="app-btn-group">
-        <a class="btn book-ambulance" asp-area="" asp-controller="AmbulanceRequest" asp-action="Request">BOOK AMBULANCE</a>
+    <form>
+        <div class="app-btn-group">
+            @if (Model != null && Model.AmbulanceRequestId > 0)
+            {
+                <button id="toggleButton" class="btn book-ambulance" type="button">Track Request</button>
+            }
+            else
+            {
+                <button class="btn book-ambulance" type="button" onclick="requestAmbulance()">BOOK AMBULANCE</button>
+            }
+        </div>
+    </form>
+    
+    <div id="notchContainer" class="notch-container">
+        <p>This is the notch-like UI!</p>
+        <button class="close-btn" id="closeButton">&times;</button>
     </div>
 </div>
 
-
 @section Scripts
 {
+    <script>
+        document.getElementById('toggleButton').addEventListener('click', function () {
+            document.getElementById('notchContainer').classList.add('active');
+        });
+
+        document.getElementById('closeButton').addEventListener('click', function () {
+            document.getElementById('notchContainer').classList.remove('active');
+        });
+    </script>
     <script src="~/js/signalr/dist/browser/signalr.min.js"></script>
     <script src="~/js/liveTracking.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAuEhOLt7dHcJFaCinq9Rj3I5BTM2LwlU&region=NL&callback=initMap&v=weekly&libraries=places" defer></script>
@@ -70,6 +99,7 @@
                         infoWindow.open(map);
   
                         map.setCenter(pos);
+                        handleDragEnd();
                     },
                     () => {
                         handleLocationError(true, infoWindow, map.getCenter());
@@ -106,9 +136,34 @@
                 }
             });
         }
-
-        
-
         window.initMap = initMap;
+    </script>
+
+    @{
+        var user = await UserManager.GetUserAsync(User);
+
+    } 
+    <script>
+        function requestAmbulance() {
+
+            let locationInput = document.getElementById("location");
+            const url = new URL('/AmbulanceRequest/AmbulanceRequest', window.location.origin);
+            const params = { phoneNumber: @user.PhoneNumber, pickupLocation: locationInput.value };
+            url.search = new URLSearchParams(params).toString();
+
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data); // See the data in the console
+                })
+                .catch(error => {
+                    console.error('There has been a problem with your fetch operation:', error);
+                });
+        }
     </script>
 }
