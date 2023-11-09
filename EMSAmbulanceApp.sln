@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmsAmbulanceApp.Web.Client"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{00DE150E-476F-4182-BC32-63DEC525AB0A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmbulanceLocationEmulator", "AmbulanceLocationEmulator\AmbulanceLocationEmulator.csproj", "{A19A3B13-EC3A-40F3-BB0A-095A501189C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AmbulanceLocationEmulator", "AmbulanceLocationEmulator\AmbulanceLocationEmulator.csproj", "{A19A3B13-EC3A-40F3-BB0A-095A501189C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmsAmbulanceApp.Mobile.Client", "EmsAmbulanceApp.Mobile.Client\EmsAmbulanceApp.Mobile.Client.csproj", "{00EF747B-6C6F-4A96-B473-76A492B3D0F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +27,12 @@ Global
 		{A19A3B13-EC3A-40F3-BB0A-095A501189C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A19A3B13-EC3A-40F3-BB0A-095A501189C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A19A3B13-EC3A-40F3-BB0A-095A501189C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00EF747B-6C6F-4A96-B473-76A492B3D0F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00EF747B-6C6F-4A96-B473-76A492B3D0F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00EF747B-6C6F-4A96-B473-76A492B3D0F5}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{00EF747B-6C6F-4A96-B473-76A492B3D0F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00EF747B-6C6F-4A96-B473-76A492B3D0F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00EF747B-6C6F-4A96-B473-76A492B3D0F5}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +40,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{E9F27CB5-69F1-43BD-821F-A5E02938A38B} = {3C9D13F2-3853-4204-BF07-D8E72FD5BC17}
 		{A19A3B13-EC3A-40F3-BB0A-095A501189C4} = {00DE150E-476F-4182-BC32-63DEC525AB0A}
+		{00EF747B-6C6F-4A96-B473-76A492B3D0F5} = {3C9D13F2-3853-4204-BF07-D8E72FD5BC17}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E8806FB7-7987-45F0-A773-A9A2EDC560B7}

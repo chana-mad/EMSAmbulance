@@ -19,39 +19,39 @@
     </div>
     <br/>
     <form>
-        <div class="app-btn-group">
+        <div class="app-btn-group" id="requestAmbulanceButtonGroup">
             @if (Model != null && Model.AmbulanceRequestId > 0)
             {
-                <button id="toggleButton" class="btn book-ambulance" type="button">Track Request</button>
+                <button id="toggleButton" class="btn book-ambulance" type="button" onclick="showNotch()">Track Request</button>
             }
             else
             {
-                <button class="btn book-ambulance" type="button" onclick="requestAmbulance()">BOOK AMBULANCE</button>
+                <button id="requestAmbulanceButton" class="btn book-ambulance" type="button" onclick="requestAmbulance()">BOOK AMBULANCE</button>
             }
         </div>
     </form>
     
     <div id="notchContainer" class="notch-container">
-        <p>This is the notch-like UI!</p>
-        <button class="close-btn" id="closeButton">&times;</button>
+        
+        <button class="close-btn" id="closeButton" onclick="closeNotch()">&times;</button>
+        <div class="ambulance-card">
+            <p><b>Trip Status:</b> <span id="tripStatus"></span></p>
+            <p><b>Arriving In:</b> <span id="arrivingIn"></span></p>
+            <p><b>Pickup Location:</b> <span id="pickUpLocation"></span></p>
+            <a id="" class="btn book-ambulance" href="tel:119">Call Driver</a>
+        </div>
     </div>
 </div>
 
 @section Scripts
 {
-    <script>
-        document.getElementById('toggleButton').addEventListener('click', function () {
-            document.getElementById('notchContainer').classList.add('active');
-        });
-
-        document.getElementById('closeButton').addEventListener('click', function () {
-            document.getElementById('notchContainer').classList.remove('active');
-        });
-    </script>
     <script src="~/js/signalr/dist/browser/signalr.min.js"></script>
     <script src="~/js/liveTracking.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAuEhOLt7dHcJFaCinq9Rj3I5BTM2LwlU&region=NL&callback=initMap&v=weekly&libraries=places" defer></script>
     <script>
+        let directionsService;
+        let directionsRenderer;
+        let geocoder;
 
         let map;
         let locationInput = document.getElementById("location");
@@ -59,6 +59,10 @@
         let autocomplete;
 
         function initMap() {
+            directionsService = new google.maps.DirectionsService();
+            directionsRenderer = new google.maps.DirectionsRenderer();
+            geocoder = new google.maps.Geocoder();
+
             map = new google.maps.Map(mapElement, {
                 zoom: 12,
                 center: { lat: 51.9244, lng: 4.4777 },
@@ -66,6 +70,10 @@
             });
 
             getCurrentLocation();
+
+            directionsRenderer.setMap(map);
+            calculateAndDisplayRoute()
+            
             map.addListener('dragend', handleDragEnd);
 
             autocomplete = new google.maps.places.SearchBox(locationInput);
@@ -97,7 +105,7 @@
                         infoWindow.setPosition(pos);
                         infoWindow.setContent("Your Location");
                         infoWindow.open(map);
-  
+
                         map.setCenter(pos);
                         handleDragEnd();
                     },
@@ -114,9 +122,6 @@
         function handleDragEnd() {
             var center = map.getCenter();
             var latlng = { lat: center.lat(), lng: center.lng() };
-
-            // Initialize the Geocoder
-            var geocoder = new google.maps.Geocoder();
 
             geocoder.geocode({ 'location': latlng }, function (results, status) {
                 if (status === 'OK') {
@@ -159,11 +164,50 @@
                     return response.json();
                 })
                 .then(data => {
+
                     console.log(data); // See the data in the console
+
+                    sendTripRequestToDriver(data.clientId);
+                    hideBookButtonAndDisplayNotch();
                 })
                 .catch(error => {
                     console.error('There has been a problem with your fetch operation:', error);
                 });
+        }
+
+    </script>
+    <script>
+        function showNotch() {
+            document.getElementById('notchContainer').classList.add('active');
+        }
+
+        function closeNotch() {
+            document.getElementById('notchContainer').classList.remove('active');
+        }
+
+        function sendTripRequestToDriver(clientId) {
+            connection.invoke("AmbulanceTripLocation", clientId)
+                .catch(err => console.log(err.toString()));
+        }
+
+        function hideBookButtonAndDisplayNotch() {
+            document.getElementById('requestAmbulanceButton').style.display = 'none';
+            document.getElementById('requestAmbulanceButtonGroup').innerHTML = '<button id="toggleButton" class="btn book-ambulance" type="button" onclick="showNotch()">Track Request</button>';
+            document.getElementById('notchContainer').classList.add('active');
+        }
+
+        function calculateAndDisplayRoute(dest) {
+            directionsService
+                .route({
+                    origin: { lat: 52.113306, lng: 4.282568 },
+                    destination: dest,
+                    travelMode: google.maps.TravelMode.DRIVING,
+                })
+                .then((response) => {
+                    directionsRenderer.setDirections(response);
+                    console.log(response);
+                })
+                .catch((e) => console.log("Directions request failed due to " + e));
         }
     </script>
 }

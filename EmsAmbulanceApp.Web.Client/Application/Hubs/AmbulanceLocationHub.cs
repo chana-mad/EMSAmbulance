@@ -15,6 +15,11 @@ public class AmbulanceLocationHub : Hub
         await Clients.Group(requestId).SendAsync("TrackLocation", requestId, ambulanceId, latitude, longitude);
     }
 
+    public async Task AmbulanceTripLocation(string clientId)
+    {
+        await Clients.Others.SendAsync("AmbulanceTripLocation", clientId);
+    }
+
     public async Task SubscribeToLocation(string requestId)
     {
         // Add the connecting client to a group based on requestId

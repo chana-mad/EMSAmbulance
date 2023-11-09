@@ -29,11 +29,11 @@ public class AmbulanceRequestController : Controller
 
         if (existingRequest == null)
             model = new AmbulanceRequestViewModel();
-
-        model = new AmbulanceRequestViewModel
-        {
-            AmbulanceRequestId = existingRequest.Id
-        };
+        else
+            model = new AmbulanceRequestViewModel
+            {
+                AmbulanceRequestId = existingRequest.Id
+            };
 
         return View(model);
     }

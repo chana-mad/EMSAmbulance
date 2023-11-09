@@ -7,8 +7,21 @@ var connection = new HubConnectionBuilder()
     .WithAutomaticReconnect()
     .Build();
 
-await connection.StartAsync();
-Console.WriteLine("Connected to Hub");
+try
+{
+    connection.On<string>("AmbulanceTripLocation", (message) =>
+    {
+        Console.WriteLine($"Recieved message from {message}");
+    });
+
+    await connection.StartAsync();
+    Console.WriteLine("Connected to Hub");
+}
+catch(Exception e)
+{
+    Console.WriteLine($"Error connecting to server : {e.Message}");
+}
+
 
 // Simulating sending location updates
 var random = new Random();
